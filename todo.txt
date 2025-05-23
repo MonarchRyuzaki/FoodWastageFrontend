@@ -1,0 +1,16 @@
+Here is the plan for next Few Days
+
+# Saturday 24th May 2025
+- [ ] Complete revising the redux toolkit and RTK Query part that will be used in the project
+
+# Sunday 25th May 2025
+- [ ] Complete the login/register feature.
+
+# Monday 26th May 2025
+- [ ] Start working on the donation feature.
+
+# Tuesday 27th May 2025
+- [ ] Continue working on the donation feature. Mainly the search and filter part.
+
+# Wednesday 28th May 2025
+- [ ] Complete working on the donation feature
