@@ -1,8 +1,9 @@
 import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import { green } from "@mui/material/colors";
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import FormTextField from "../components/FormTextField";
-import { DonorFormData, DonorFormErrors } from "../interface/registerForm";
+import { DonorFormData, DonorFormErrors, ErrorResponse } from "../interface/registerForm";
 import { useRegisterAsDonorMutation } from "../store/slices/authApi";
 import { donorTextFields, validateRegisterDonor } from "../utils/registerForm";
 
@@ -19,8 +20,10 @@ export default function RegisterPageDonor() {
   });
 
   const [errors, setErrors] = useState<DonorFormErrors>({});
+  const [responseError, setResponseError] = useState<string | null>(null);
   const [registerAsDonor, { isLoading: isSubmitting }] =
     useRegisterAsDonorMutation();
+  const navigate = useNavigate();
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -35,12 +38,30 @@ export default function RegisterPageDonor() {
       return;
     }
     console.log("Submitting form", formData);
-    const result = await registerAsDonor(formData);
-    console.log("Registration result:", result);
+    try {
+      const result = await registerAsDonor(formData).unwrap();
+      console.log("Registration result:", result);
+      if (result.message === "User registered successfully.") {
+        navigate("/login?type=donor&registered=true");
+        return;
+      }
+    } catch (e) {
+      setResponseError((e as ErrorResponse).data.error);
+    }
   };
 
   return (
     <Container maxWidth="sm" sx={{ minHeight: "100vh" }}>
+      {responseError && (
+        <Typography
+          variant="body1"
+          color="error"
+          align="center"
+          sx={{ marginTop: 2 }}
+        >
+          {responseError}
+        </Typography>
+      )}
       <Paper elevation={3} sx={{ padding: 4, marginTop: 8 }}>
         <Typography variant="h4" align="center" gutterBottom>
           Donor Registration

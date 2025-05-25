@@ -29,7 +29,7 @@ export interface NGOFormData extends BaseFormData {
   prefersFoodType: string[];
   rejectsFoodType: string[];
   avoidsAllergen: string[];
-  registrationProof: File | null;
+  idProof: File | null;
 }
 
 export interface NGOFormErrors extends BaseFormErrors {
@@ -39,7 +39,7 @@ export interface NGOFormErrors extends BaseFormErrors {
   prefersFoodType?: string;
   rejectsFoodType?: string;
   avoidsAllergen?: string;
-  registrationProof?: string;
+  idProof?: string;
 }
 
 // Donor-specific interfaces reuse the base fields.
@@ -54,4 +54,11 @@ export interface FieldConfig<T> {
   type?: string;
   multiline?: boolean;
   rows?: number;
+}
+
+export interface ErrorResponse {
+  data: {
+    error: string;
+  };
+  status: number;
 }

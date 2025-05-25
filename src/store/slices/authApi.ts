@@ -9,7 +9,10 @@ export const authApi = createApi({
             query: (credentials) => ({
                 url: "/login",
                 method: "POST",
-                body: credentials,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(credentials),
             }),
         }),
         registerAsDonor: builder.mutation({
@@ -22,7 +25,24 @@ export const authApi = createApi({
                 body: JSON.stringify(credentials),
             }),
         }),
+        loginAsNGO: builder.mutation({
+            query: (credentials) => ({
+                url: "/login-ngo",
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(credentials),
+            }),
+        }),
+        registerAsNGO: builder.mutation({
+            query: (credentials) => ({
+                url: "/register-ngo",
+                method: "POST",
+                body: credentials,
+            }),
+        }),
     })  
 });
 
-export const { useLoginAsDonorMutation, useRegisterAsDonorMutation } = authApi;
+export const { useLoginAsDonorMutation, useRegisterAsDonorMutation, useLoginAsNGOMutation, useRegisterAsNGOMutation } = authApi;

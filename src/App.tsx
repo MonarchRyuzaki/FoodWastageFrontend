@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPageDonor from "./pages/RegisterPageDonor";
 import RegisterPageNGO from "./pages/RegisterPageNGO";
+import LogoutPage from "./pages/LogoutPage";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "login", // use URL params for Donor and NGO login
         element: <LoginPage />,
+      },
+      {
+        path: "logout",
+        element: <LogoutPage />,
       },
       {
         path: "register/donor",

@@ -39,8 +39,8 @@ export function validate(formData: NGOFormData): NGOFormErrors {
         newErrors.rejectsFoodType = "At least one rejected food type is required.";
     if (formData.avoidsAllergen.length === 0)
         newErrors.avoidsAllergen = "At least one allergen avoidance is required.";
-    if (!formData.registrationProof)
-        newErrors.registrationProof = "Registration proof (JPEG) is required.";
+    if (!formData.idProof)
+        newErrors.idProof = "Registration proof (JPEG) is required.";
 
     return newErrors;
 }
