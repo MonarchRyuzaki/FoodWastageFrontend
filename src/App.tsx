@@ -1,6 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import MainLayout from "./layouts/MainLayout";
 import LandingPage from "./pages/LandingPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPageDonor from "./pages/RegisterPageDonor";
+import RegisterPageNGO from "./pages/RegisterPageNGO";
 
 const router = createBrowserRouter([
   {
@@ -12,19 +15,25 @@ const router = createBrowserRouter([
         element: <LandingPage />,
       },
       {
-        path: "/login", // use URL params for Donor and NGO login
+        path: "login", // use URL params for Donor and NGO login
+        element: <LoginPage />,
       },
       {
-        path: "/register", // use URL params for Donor and NGO register
+        path: "register/donor",
+        element: <RegisterPageDonor />,
       },
       {
-        path: "/donations", // Here all the donation listing will be shown along with the filter options. The filter slected will be saved in the URL params
+        path: "register/ngo", // use URL params for Donor and NGO register
+        element: <RegisterPageNGO />,
       },
       {
-        path: "/donation/:id", // Here the donation details will be shown
+        path: "donations", // Here all the donation listing will be shown along with the filter options. The filter slected will be saved in the URL params
       },
       {
-        path: "/donation/:id/edit", // Here will be the edit donation form. The form will be prefilled with the donation details. It will be accessible to onlt the creator of the donation. Same for delete
+        path: "donation/:id", // Here the donation details will be shown
+      },
+      {
+        path: "donation/:id/edit", // Here will be the edit donation form. The form will be prefilled with the donation details. It will be accessible to onlt the creator of the donation. Same for delete
       },
     ],
   },
