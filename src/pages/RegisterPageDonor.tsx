@@ -2,7 +2,8 @@ import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import { green } from "@mui/material/colors";
 import React, { useState } from "react";
 import FormTextField from "../components/FormTextField";
-import { BaseFormErrors, DonorFormData } from "../interface/registerForm";
+import { DonorFormData, DonorFormErrors } from "../interface/registerForm";
+import { useRegisterAsDonorMutation } from "../store/slices/authApi";
 import { donorTextFields, validateRegisterDonor } from "../utils/registerForm";
 
 export default function RegisterPageDonor() {
@@ -17,22 +18,25 @@ export default function RegisterPageDonor() {
     state: "",
   });
 
-  const [errors, setErrors] = useState<BaseFormErrors>({});
+  const [errors, setErrors] = useState<DonorFormErrors>({});
+  const [registerAsDonor, { isLoading: isSubmitting }] =
+    useRegisterAsDonorMutation();
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationErrors = validateRegisterDonor(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    // Proceed with API call and further processing
     console.log("Submitting form", formData);
+    const result = await registerAsDonor(formData);
+    console.log("Registration result:", result);
   };
 
   return (
@@ -57,6 +61,7 @@ export default function RegisterPageDonor() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, backgroundColor: green[700] }}
+            disabled={isSubmitting}
           >
             Register
           </Button>

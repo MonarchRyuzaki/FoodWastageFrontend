@@ -1,5 +1,9 @@
 import { TextField } from "@mui/material";
-import { DonorFieldConfig, FieldConfig } from "../interface/registerForm";
+import {
+  DonorFormData,
+  FieldConfig,
+  NGOFormData,
+} from "../interface/registerForm";
 export default function FormTextField({
   config,
   value,
@@ -7,7 +11,7 @@ export default function FormTextField({
   error,
   helperText,
 }: {
-  config: FieldConfig | DonorFieldConfig;
+  config: FieldConfig<DonorFormData> | FieldConfig<NGOFormData>;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
