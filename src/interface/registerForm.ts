@@ -47,3 +47,33 @@ export interface FieldConfig {
   multiline?: boolean;
   rows?: number;
 }
+
+export interface DonorFormData {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  phone: string;
+  address: string;
+  city: string;
+  state: string;
+}
+
+export interface DonorFormErrors {
+  name?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+}
+
+export interface DonorFieldConfig {
+  name: keyof DonorFormData;
+  label: string;
+  type?: string;
+  multiline?: boolean;  
+  rows?: number;
+}
