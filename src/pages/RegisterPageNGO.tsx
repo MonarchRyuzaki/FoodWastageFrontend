@@ -11,11 +11,11 @@ import { useState } from "react";
 import FormTextField from "../components/FormTextField.tsx";
 import { MultiSelectField } from "../components/MultiSelectField.tsx";
 import { allergens, foodTypes } from "../constants/foodOptions.ts";
-import { FormData, FormErrors } from "../interface/registerForm.ts";
+import { NGOFormData, NGOFormErrors } from "../interface/registerForm.ts";
 import { textFields, validate } from "../utils/registerForm.ts";
 
 export default function RegisterPageNGO() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<NGOFormData>({
     registrationNumber: "",
     password: "",
     confirmPassword: "",
@@ -33,10 +33,10 @@ export default function RegisterPageNGO() {
     registrationProof: null,
   });
 
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState<NGOFormErrors>({});
 
   const handleChange = (
-    field: keyof FormData,
+    field: keyof NGOFormData,
     value: string | string[] | File | null
   ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

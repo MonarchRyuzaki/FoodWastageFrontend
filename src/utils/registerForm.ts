@@ -1,6 +1,6 @@
-import { DonorFieldConfig, DonorFormData, FieldConfig, FormData, FormErrors } from "../interface/registerForm";
+import { DonorFormData, DonorFormErrors, FieldConfig, NGOFormData, NGOFormErrors } from "../interface/registerForm";
 
-export const textFields: FieldConfig[] = [
+export const textFields: FieldConfig<NGOFormData>[] = [
     { name: "registrationNumber", label: "Registration Number" },
     { name: "password", label: "Password", type: "password" },
     { name: "confirmPassword", label: "Confirm Password", type: "password" },
@@ -14,8 +14,8 @@ export const textFields: FieldConfig[] = [
     { name: "state", label: "State" },
   ];
   
-export function validate(formData: FormData): FormErrors {
-    const newErrors: FormErrors = {};
+export function validate(formData: NGOFormData): NGOFormErrors {
+    const newErrors: NGOFormErrors = {};
 
     if (!formData.registrationNumber.trim())
         newErrors.registrationNumber = "Registration number is required.";
@@ -45,8 +45,8 @@ export function validate(formData: FormData): FormErrors {
     return newErrors;
 }
 
-export function validateRegisterDonor(formData: DonorFormData): FormErrors {
-    const newErrors: FormErrors = {};
+export function validateRegisterDonor(formData: DonorFormData): DonorFormErrors {
+    const newErrors: DonorFormErrors = {};
 
     if (!formData.password) newErrors.password = "Password is required.";
     if (!formData.confirmPassword)
@@ -63,7 +63,7 @@ export function validateRegisterDonor(formData: DonorFormData): FormErrors {
     return newErrors;
 }
 
-export const donorTextFields: DonorFieldConfig[] = [
+export const donorTextFields: FieldConfig<DonorFormData>[] = [
     { name: "name", label: "Name" },
     { name: "email", label: "Email", type: "email" },
     { name: "password", label: "Password", type: "password" },

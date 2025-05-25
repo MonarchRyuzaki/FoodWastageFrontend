@@ -2,7 +2,7 @@ import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import { green } from "@mui/material/colors";
 import React, { useState } from "react";
 import FormTextField from "../components/FormTextField";
-import { DonorFormData, FormErrors } from "../interface/registerForm";
+import { BaseFormErrors, DonorFormData } from "../interface/registerForm";
 import { donorTextFields, validateRegisterDonor } from "../utils/registerForm";
 
 export default function RegisterPageDonor() {
@@ -17,7 +17,7 @@ export default function RegisterPageDonor() {
     state: "",
   });
 
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState<BaseFormErrors>({});
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
